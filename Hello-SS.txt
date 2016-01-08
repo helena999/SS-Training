@@ -1,2 +1,3 @@
 Hello SoftServe Training
--First Git Commit
+
+1) First Git Commit
