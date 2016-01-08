@@ -1,0 +1,2 @@
+Hello SoftServe Training
+-First Git Commit
