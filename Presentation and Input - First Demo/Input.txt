@@ -1,0 +1,11 @@
+7
+Peter-Nikolay
+Peter-Nina
+Nikolay-Ivan
+Nina-Simeon
+Nina-George
+Simeon-Silvia
+George-Anton
+
+(Silvia,Anton) => Nina
+(Nikolay,Ivan) => Nikolay

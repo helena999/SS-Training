@@ -1,16 +1,13 @@
 ﻿namespace CompanyHierarchy
 {
+    using System;
     using System.Collections.Generic;
 
     public class Employee
     {  
-        //fields
-        private string name; //value
-        private List<Employee> subordinates; //children
-        private int numberOfSubordinates; //number of children
-  
-        //properties
-        public string Parent { get; set; }
+        private string name;
+        private string superior;
+        private List<Employee> subordinates;
 
         public string Name
         {
@@ -21,36 +18,45 @@
             set
             {
                 this.name = value;
-                
+
             }
         }
 
-        public int NumberOfSubordinates
+        public string Superior
         {
             get
             {
-                return this.subordinates.Count;
+                return this.superior;
+            }
+            set
+            {
+                this.superior = value;
+
             }
         }
 
-        //constructor
         public Employee(string employeeName)
         {
             this.Name = employeeName;
             this.subordinates = new List<Employee>();
+
         }
 
-        //methods
         public void AddSubordinate(Employee employee)
         {
             subordinates.Add(employee);
-            employee.Parent = Name;
+            employee.Superior = Name;
+
+            if (subordinates.Count > 2)
+            {
+                Console.WriteLine("Superior does not allow to have more than 2 subordinates!");
+            }
         }
 
-        public Employee GetSuperior(Employee input)
+        public string GetSuperior(Employee employee)
         {
-            Employee employee = new Employee(input.Parent);
-            return employee;
+            string superior = employee.Superior;
+            return superior;
         }
     }
 }

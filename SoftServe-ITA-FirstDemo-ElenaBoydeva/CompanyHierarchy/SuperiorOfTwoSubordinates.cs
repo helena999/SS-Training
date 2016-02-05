@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
 
     public class SuperiorOfTwoSubordinates
     {
@@ -27,8 +28,8 @@
                     string superiorName = separatedRelation[0];
                     string subordinateName = separatedRelation[1];
 
-                    Employee superior; //parentNode
-                    Employee subordinate; //childNode
+                    Employee superior;
+                    Employee subordinate;
 
                     if (allEmployees.ContainsKey(superiorName))
                     {
@@ -50,28 +51,44 @@
                         allEmployees.Add(subordinateName, subordinate);
                     }
 
-                    //make the connection between them. Add child to parent
                     superior.AddSubordinate(subordinate);
-
-                    if (superior.NumberOfSubordinates > 2)
-                    {
-                        throw new ArgumentException(superior.Name, "Superior does not allow to have more than 2 subordinates!");
-                    }
                 }
 
                 Console.WriteLine("\nEnter two employees on separete lines to find their most direct superior:");
+                Console.Write("First Employee: ");
                 string firstEmployeeName = Console.ReadLine();
+
+                //Check if first given employee is in the company hierarchy
+                bool isFirstIn = allEmployees.Keys.Where(x => x == firstEmployeeName).Any();
+                if (!isFirstIn)
+                {
+                    Console.WriteLine("Please enter first employee that is in our company hiearchy");
+                    Console.Write("First Employee: ");
+                    firstEmployeeName = Console.ReadLine();
+                }
+
+                Console.Write("Second Employee: ");
                 string secondEmployeeName = Console.ReadLine();
+
+                //Check if second given employee is in company hierarchy
+                bool isSecondIn = allEmployees.Keys.Where(x => x == secondEmployeeName).Any();
+                if (!isSecondIn)
+                {
+
+                    Console.WriteLine("Please enter second employee that is in our company hierarchy");
+                    Console.Write("Second Employee: ");
+                    secondEmployeeName = Console.ReadLine();
+                }
 
                 Employee firstEmployee = allEmployees[firstEmployeeName];
                 allSuperiorsOfEmployee.Add(firstEmployee.Name);
                 List<string> superiorsOfFirstEmployee = ReturnSuperiors(firstEmployee);
+
                 allSuperiorsOfEmployee = new List<string>();
 
                 Employee secondEmployee = allEmployees[secondEmployeeName];
                 allSuperiorsOfEmployee.Add(secondEmployee.Name);
                 List<string> superiorsOfSecondEmployee = ReturnSuperiors(secondEmployee);
-                allSuperiorsOfEmployee = new List<string>();
 
                 Console.WriteLine("\nThe most direct superior is:");
                 foreach (string superior in superiorsOfSecondEmployee)
@@ -86,21 +103,21 @@
             }
             else
             {
-                Console.WriteLine("Please enter correct input as number!");
-            }
+                Console.WriteLine("Please enter a valid number!");
+            }          
         }
 
         public static List<string> ReturnSuperiors(Employee employee)
         {
-            if (allEmployees[employee.Name].Parent == null )
+            if (allEmployees[employee.Name].Superior == null )
             {
                 return allSuperiorsOfEmployee;
             }
             else
             {
-                string employeeName = employee.GetSuperior(employee).Name;
-                allSuperiorsOfEmployee.Add(employeeName);
-                employee = allEmployees[employeeName];
+                string superiorName = employee.GetSuperior(employee);
+                allSuperiorsOfEmployee.Add(superiorName);
+                employee = allEmployees[superiorName];
                 ReturnSuperiors(employee); 
             }
             return allSuperiorsOfEmployee;
