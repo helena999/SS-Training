@@ -1,0 +1,43 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="default.master.cs" Inherits="_default" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Employee Management System</title>
+<link href="style.css" rel="stylesheet" type="text/css" />
+<script language="javascript" type="text/javascript" src="datetimepicker.js"></script>
+</head>
+<body>
+<form id="frmMain" runat="server">
+<div id="container_wrapper">
+	<div class="spacer"></div>
+<div id="container">
+<div id="top"><asp:Label ID="lblHeaderMessage" runat="server"></asp:Label>, 
+    <asp:LinkButton ID="lnkLogout" runat="server" OnClick="lnkLogout_Click">Logout</asp:LinkButton></div>
+  <div id="header">
+      <div id="inner_header">
+        <div id="site_title">Employee Management System</div>
+          <div id="site_slogan">Version 1.0</div>
+      </div>
+  </div>
+  
+    <div id="left_column">
+ 		<div class="text_area" align="justify">
+        <asp:ContentPlaceHolder runat="server" ID="cphMain">
+        </asp:ContentPlaceHolder>   
+        </div>
+      </div>
+	
+    <div id="right_column">
+        <asp:ContentPlaceHolder runat="server" ID="cphRight">
+        </asp:ContentPlaceHolder>
+    </div>
+    <div id="footer">
+    Designed and Developed by <a href="http://www.shyamsrinivas.com" target="_blank">Shyam Srinivas</a>
+    </div>
+</div>
+<div class="spacer"></div>
+</div>
+</form>
+</body>
+</html>

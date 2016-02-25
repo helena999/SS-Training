@@ -1,0 +1,43 @@
+vupros - koi e team managera - project managera ili team leadera na otbora. team leadera vkluchva li se v otbora
+
+kogato 1 se prehvurli na drug shef kakvo stava s podchinenite mu
+-mestqt se s nego?
+ili
+-se prikachvat kam toq koto e bil nad premesteniq
+
+To do
+-edit - employees - DONE
+-edit - teams
+-details - teams - kakvo da ima?
+-validation dropdownlist - employees(edit) jobpos, towns, managers
+-validation dropdownlist - teams(edit) managers
+
+- what da fuck - kogato ima validaciq v samiq klas - mi dava pri iztrivane na employee modelState.IsValid = false i ne go trie????? opravih go!
+
+
+
+
+- ima problem pri iztrivaneto na employee, koeto e manager na nqkoi
+
+https://www.youtube.com/watch?v=ItSA19x4RU0 - za obqsnenie za http get e dobre
+
+http://stackoverflow.com/questions/27471811/mvc-edit-view-set-selected-dropdown-list-value-with-htmlattribute-overload = rpoblema s dropdown lista pri edit template da se setne valueto na pravilnoto, no posle ne go seifashe v bazata
+
+http://stackoverflow.com/questions/5386357/dropdown-for-edit-razorview-pre-loaded-with-data-from-model - tova assainva pravilnoto value na dropdowna i seifa v bazata
+
+http://stackoverflow.com/questions/15333513/why-modelstate-isvalid-always-return-false-in-mvc - zashto model state alaus false
+
+
+priblem pri redakciqta na team - pri seifaneto ima konflikt
+
+http://www.sqlbook.com/SQL/INNER-JOIN-37.aspx - join more than 2 tables - 
+SELECT c.FirstName, c.LastName, d.Name
+FROM Teams a INNER JOIN
+	TeamEmployee b ON a.TeamID = b.TeamID INNER JOIN
+	Employees c ON b.EmployeeID = c.EmployeeID INNER JOIN
+	JobPositions d ON c.JobPositionID = d.JobPositionID
+WHERE b.TeamID = 1
+- raboti zaqvkata
+
+
+Use JavaScript to validate the input to force the user to enter the correct format. zashtoto pri modela kato se sloji validaciq - model state moje da e iz valid false 

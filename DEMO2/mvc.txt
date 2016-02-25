@@ -1,0 +1,186 @@
+ASP.NET MVC
+
+MVC - Model, View, Controller
+
+neshto koeto se griji za bazata adnni za komunkaciqtata mejdu usera i za grafichniq interefeis
+
+
+dobro razdelenie na otgovornostite
+
+Model - osnovnite klasove v nashata baza danni
+kak se boravi s bazata danni
+kak ima dostup
+biznes logikata na nashto prilojenie
+informaciq i pravila kak dannite shte budat obraboteni
+validacii
+
+View - otgovarq za tova po kakuv nachih potrebitelq shte vijda dannite. moje da ima master page(web forms) layouts i tn
+generirat html
+
+controller - osnovniq gradiven element priema tova koeto potrebitelq e napravil i kakvo tochno e napravil i na bazata na tova neshto toi precenqva kakvo da napravi da pokaje
+predstavlqva logikata na prilojenieto
+
+nabor ot klasove, koito bivat izvikvani kogato potrebitelq napravi konkretna zaqvka
+
+
+SRP - vs klas trqbva da ima 1 edinstvena otgovornost. pravi tova, za koeto e predsnaznachen
+
+SELECT Name FROM TeamProjects
+
+SELECT e.FirstName, e.LastName, j.Name
+FROM Employees e
+JOIN JobPositions j
+ON e.JobPositionID = j.JobPositionID
+
+
+SELECT e.FirstName, e.LastName, etp.ProjectID
+FROM Employees e
+JOIN EmployeesTeamProjects etp
+ON e.EmployeeID = etp.EmployeeID
+
+http://www.dotnetspider.com/resources/44179-Employee-System-Application-using-ASPnet-MVC.aspx
+
+employee management system project in mvc
+
+https://vimeo.com/album/2091479
+
+https://www.youtube.com/results?search_query=employee+management+system+in+mvc
+
+Controllers - namirat se vs onezi klasove i cqlata logika na prilojenieto. klasovite koito se instanciirat i tehni metodi se izvikvat, kogato daden potrebitel napravi zaqvka
+
+Static files(CSS, Images, etc) - sa razpolojeni v Content i img
+
+JavaScript files - v papka Scripts se namirat, validaciq primerno, ajax ako ima i tn
+
+View templates - se namirat vuv Views - onazi chast ot prilojenieto, koqto generira html-a za potrebitelq. V tazi papka imame po 1 papka za vseki kontroler. pr Home kontrolera si ima papka Home, Account kontrolera si ima papka Account. V tezi papki imame po 1 fail potencialno za vseki ACTIONresult. Pr za Index action-a ot Home controllera v papka Views/Home/ imame fail koito se kazva Incex.cshtml
+
+papka Shared v View foldera - namrat se partial viewta, spodeleni viewta, koito mojem da izpolzvame. Kakto i nashiq master page - _Layout.cshtml file, koito ako e razpolojen v papka views/shared i e imenuvam _Layout.cshtml ne e nujno da kazvame tova e nashiq master page(v web forms e razlichno, kazvame kude se namira master page-a).Moje da ima poveche ot 1 master page no veche tqrbva izrichno da kajem koi iskame da izpolzvame
+
+-packages.config - pomaga na nuget-a da registrirate vs paketi zaedno s kontretknite versii, koito da izpolzvate vuv vasheto prilojenie. v nego ima vs paket, koito sa mu neobhodimi za da moje prilojenieto da raboti
+
+Startup.cs  - namira se nachalnata tochka na nasheto prilojenie, ako izpozlvame koncepciq all in ot moi si web server 
+
+Glabal.asax faila - ot tuk zapochva rabotata na vasheto prilojenie. 1voto neshto koeto se izvikva e Application_Start() - tova e main metoda na prilojeneieto. Tozi metod se izpulnqva samo vednuj i ot tam natatuk vsqka sledvashta zaqvka minava prez outove, controlleri view-ta i tn.
+
+webconfig faila - namirat se connection stringove, nastroiki za survara, entity framework. Pozvolqva da imame nqkakva nastroiki, koito mojem da promenqma bez da se nalaga da prekompilirame prilojenieto
+
+nuget pozvolqva da razdelqme nasheto prilojenie na otdelni paketcheta s cel po-lesno da budat updeitvani. tehnologiite, koito izplzvame i koito ne zavisqt tolkova mn ot .net framework-a da budat  updeitvaemi s 1 butohnce update v nuget sistemata
+
+glimpse - platforma za diagnosticirane na web prilojeniq. za debugvane na web prilojenie. pokazva ni informaciq na neshtata, koito se sluchvat na servera. pokazva i vs zaqvki(sql), koito prashtame kum servera, vkl tehnite parametri, kolko zapisa sa vurnali i tn zashtto kogato pishem nqkakvi zaqvki nie gi pishem ili prez extention metodite ili prez linq i nqmame predstava kak te realno izglejdat ot gledna tochka na sql servera.
+
+install nuget pacages - glimpse, glimpse ef6
+
+otvarqme go kato startirame prilojenieto i dopishem /glimpse.axd i natiskame turn glimpse on
+
+
+
+OSNOVNTIE GRADIVNI ELEMENTI NA 1 MVC PRILOJENIE
+
+ROUTING - nachina po koito mvc- to  priema nqkakva zaqvka i q prenasochva kam konkreten action -> izbira si nqkakuv kontreten kontroler i si izbira nqkakuv kontreten metod(action)
+
+CONTROLLERS AND ACTIONS - osnovnata gradivna edinica.mozuka na nasheto prilojenie. Pri vsqka zaqvka se suzdava nova instanciq na kontrolera. Instanciira se kontrolera, sled koeto se izvikva nqkakuv negov action. Tozi action trqbva da e publichen metod, koito moje da bude konventiran da vrushta string. No v povecheto sluchai vrushta bazov klas koito se kazva ActionResult.
+ViewBag - 1 metod da podavame danni na View-tata
+
+Actions - destinaciqta na zaqvkata ni - ppublichin metodi, nestatuchi, i nqma znachenie kakvo vrushtat.
+
+----------
+code first model - pishesh c# klasove, koito generira bazata danni sled tova
+
+EmployeesManagementEntities db = new EmployeesManagementEntities(); suzdavame si nova conekciq kum bazata
+
+http://stackoverflow.com/questions/11767911/mvc-httppost-httpget-for-action
+
+http://stackoverflow.com/questions/27916642/there-is-no-viewdata-item-of-type-ienumerableselectlistitem-that-has-the-key - POMOGNA MI DA OPRAVQ DROPDOWN PROBLEMA!!!!
+
+http://stackoverflow.com/questions/12090937/populating-a-dropdown-from-viewdata
+
+http://www.asp.net/mvc/overview/older-versions/getting-started-with-aspnet-mvc4/adding-validation-to-the-model - validaciite na model Employee - entity tablicata napravih!
+
+http://www.asp.net/mvc/overview/older-versions/getting-started-with-aspnet-mvc4/adding-validation-to-the-model - ZA VALIDACIQTA OSHTE INFO
+
+https://www.youtube.com/watch?v=3JbN7xBBhZU - validaciq
+
+http://stackoverflow.com/questions/4729440/validate-a-dropdownlist-in-asp-net-mvc - tva da go proverq
+
+
+https://msdn.microsoft.com/en-us/library/dd405231(v=vs.100).aspx
+
+https://www.youtube.com/watch?v=79aYSOcmpV8 - dropdown
+
+  @Html.DropDownListFor(m => m.JobPositionID, null, "Select position", htmlAttributes: new { @class = "form-control" })
+
+---------------
+http://forums.asp.net/t/1792704.aspx?There+is+no+ViewData+item+of+type+IEnumerable+SelectListItem+that+has+the+key+JobCodeType+
+
+http://weblogs.asp.net/pjohnson/mvc-s-html-dropdownlist-and-quot-there-is-no-viewdata-item-of-type-ienumerable-lt-selectlistitem-gt-that-has-the-key
+
+http://stackoverflow.com/questions/27916642/there-is-no-viewdata-item-of-type-ienumerableselectlistitem-that-has-the-key
+
+https://www.daniweb.com/programming/web-development/threads/343640/asp-net-mvc-viewdata-and-dropdownlist
+
+http://stackoverflow.com/questions/12090937/populating-a-dropdown-from-viewdata
+
+http://stackoverflow.com/questions/390083/asp-net-mvc-html-dropdownlist-value-not-set-via-viewdata-model
+
+http://stackoverflow.com/questions/27579729/not-able-to-populate-dropdownlistfor-with-viewdata
+
+https://www.google.bg/webhp?sourceid=chrome-instant&ion=1&espv=2&es_th=1&ie=UTF-8#q=viewdata%20dropdownlist%20in%20asp.net%20mvc
+
+https://www.google.bg/search?q=There+is+no+ViewData+item+of+type+%27IEnumerable%3CSelectListItem%3E%27+that+has+the+key+%27JobPositionID%27.&oq=There+is+no+ViewData+item+of+type+%27IEnumerable%3CSelectListItem%3E%27+that+has+the+key+%27JobPositionID%27.&aqs=chrome..69i57.340j0j7&sourceid=chrome&es_sm=122&ie=UTF-8#q=There+is+no+ViewData+item+of+type+%27IEnumerable%3CSelectListItem%3E%27+
+
+https://www.google.bg/search?q=There+is+no+ViewData+item+of+type+%27IEnumerable%3CSelectListItem%3E&oq=There+is+no+ViewData+item+of+type+%27IEnumerable%3CSelectListItem%3E&aqs=chrome..69i57j69i61j69i59l3j69i60.143j0j4&sourceid=chrome&es_sm=122&ie=UTF-8
+
+http://benfoster.io/blog/better-form-handling-in-aspnet-mvc
+
+http://forumarray.com/mvc-dropdownlist-validation-not-working-for-complex-view-model-495059
+
+http://nodogmablog.bryanhogan.net/2013/08/drop-down-lists-in-asp-net-mvc/
+
+http://www.dotnet-tutorial.com/articles/mvc/how-to-bind-dropdownlist-in-asp-net-mvc-3-razor-with-validation
+
+https://recalll.co/app/?q=asp.net%20mvc%20-%20Dropdownlist%20client%20side%20required%20validation%20(without%20model)
+
+http://codeclimber.net.nz/archive/2009/08/05/how-to-create-a-dropdownlist-with-asp.net-mvc.aspx
+
+http://www.tutorialsteacher.com/mvc/htmlhelper-dropdownlist-dropdownlistfor
+
+https://www.google.bg/search?q=mvc+model+validation&oq=mvc+model+validation&aqs=chrome..69i57j0l5.3390j1j7&sourceid=chrome&es_sm=122&ie=UTF-8
+
+https://msdn.microsoft.com/en-us/library/dd405231(v=vs.100).aspx
+
+https://www.youtube.com/watch?v=XRMgiVyW04M
+
+https://www.asp.net/mvc/overview/getting-started/database-first-development/setting-up-database
+
+http://www.w3schools.com/aspnet/mvc_database.asp
+
+http://www.advancesharp.com/blog/1029/mvc-model-validation-for-email-from-database-in-asp-net
+
+https://www.google.bg/webhp?sourceid=chrome-instant&ion=1&espv=2&es_th=1&ie=UTF-8#q=check+for+valid+data+in+mvc
+
+https://www.google.bg/search?q=SelectList+with+a+null+selection&oq=SelectList+with+a+null+selection&aqs=chrome..69i57j69i60.423j0j4&sourceid=chrome&es_sm=122&ie=UTF-8
+
+https://www.google.bg/webhp?sourceid=chrome-instant&ion=1&espv=2&es_th=1&ie=UTF-8#q=how+to+add+null+in+selectList+in+view+data
+
+http://forums.asp.net/t/1792704.aspx?There+is+no+ViewData+item+of+type+IEnumerable+SelectListItem+that+has+the+key+JobCodeType+
+
+https://www.youtube.com/watch?v=grHBY3R_qzo
+
+http://www.techcognition.com/post/HttpGet-and-HttpPost-Methods-in-ASPNET-MVC
+
+https://msdn.microsoft.com/en-us/library/system.web.mvc.httpgetattribute(v=vs.118).aspx
+
+https://www.google.bg/webhp?sourceid=chrome-instant&ion=1&espv=2&es_th=1&ie=UTF-8#q=+%5Bhttpget%5D+mvc
+
+https://www.youtube.com/watch?v=rct6LIyErUE
+
+http://sourcecodehelp.com/show_code.php?id=1685&code=employee-management-system-with-online-communication
+
+https://www.google.bg/search?q=employee+management+system&espv=2&biw=1366&bih=655&source=lnms&tbm=isch&sa=X&ved=0ahUKEwiOrMLOionLAhVrDJoKHYgCBBAQ_AUIBigB#imgrc=8wm9b_3lZ0LVwM%3A
+
+https://www.google.bg/search?q=ASP.NET+MVC+5+Step+by+Step%3A+Part+1&oq=ASP.NET+MVC+5+Step+by+Step%3A+Part+1&aqs=chrome..69i57.1139j0j7&sourceid=chrome&es_sm=122&ie=UTF-8
+
+https://www.youtube.com/watch?v=NAKLrsvBC6g
+
+https://www.youtube.com/watch?v=F0Xs33UMLnA
+
